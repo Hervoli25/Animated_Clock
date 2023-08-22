@@ -59,7 +59,7 @@ function clock() {
 	const min = now.getMinutes();
 	const sec = now.getSeconds();
 
-	console.log(` ${hr} : ${min} : ${sec}`);
+	//console.log(` ${hr} : ${min} : ${sec}`);
 
 	//Calculate angle of hands
 	ctx.save();
@@ -89,16 +89,21 @@ function clock() {
 	//Draw Second Hand
 
 	ctx.save();
-	ctx.rotate((Math.PI / 30) * sec);
-	ctx.strokeStyle = '#800000';
+	ctx.rotate((sec * Math.PI) / 30);
+	ctx.strokeStyle = '#FF7F50';
+	ctx.fillStyle = '#FF7F50';
 	ctx.lineWidth = 6;
 	ctx.beginPath();
 	ctx.moveTo(-30, 0);
-	ctx.lineTo(83, 0);
+	ctx.lineTo(100, 0);
 	ctx.stroke();
 	ctx.restore();
+	ctx.beginPath();
+	ctx.arc(0, 0, 10, 0, Math.PI * 2, true);
+	ctx.fill();
 
 	ctx.restore(); // restore default state (this will undo the rotate transformation)
+	requestAnimationFrame(clock);
 }
 
-clock();
+requestAnimationFrame(clock);
