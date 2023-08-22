@@ -40,6 +40,29 @@ function clock() {
 
 	ctx.restore();
 
+	//Draw minute lines
+	ctx.save();
+	ctx.lineWidth = 5;
+	for (let i = 0; i < 60; i++) {
+		if (i % 5 !== 0) {
+			ctx.beginPath();
+			ctx.moveTo(117, 0);
+			ctx.lineTo(120, 0);
+			ctx.stroke();
+		}
+		ctx.rotate(Math.PI / 30);
+	}
+	ctx.restore();
+
+	//Get Current Time
+	const hr = now.getHours() % 12;
+	const min = now.getMinutes();
+	const sec = now.getSeconds();
+
+	console.log(` ${hr} : ${min} : ${sec}`);
+
+	//Calculate angle of hands
+
 	ctx.restore(); // restore default state (this will undo the rotate transformation)
 }
 
