@@ -62,6 +62,41 @@ function clock() {
 	console.log(` ${hr} : ${min} : ${sec}`);
 
 	//Calculate angle of hands
+	ctx.save();
+	ctx.rotate(
+		(Math.PI / 6) * hr + (Math.PI / 360) * min + (Math.PI / 21600) * sec
+	);
+
+	ctx.strokeStyle = '#800000';
+	ctx.lineWidth = 14;
+	ctx.beginPath();
+	ctx.moveTo(-20, 0);
+	ctx.lineTo(80, 0);
+	ctx.stroke();
+	ctx.restore();
+
+	//Draw Minute Hand
+	ctx.save();
+	ctx.rotate((Math.PI / 30) * min + (Math.PI / 1800) * sec);
+	ctx.strokeStyle = '#800000';
+	ctx.lineWidth = 10;
+	ctx.beginPath();
+	ctx.moveTo(-28, 0);
+	ctx.lineTo(112, 0);
+	ctx.stroke();
+	ctx.restore();
+
+	//Draw Second Hand
+
+	ctx.save();
+	ctx.rotate((Math.PI / 30) * sec);
+	ctx.strokeStyle = '#800000';
+	ctx.lineWidth = 6;
+	ctx.beginPath();
+	ctx.moveTo(-30, 0);
+	ctx.lineTo(83, 0);
+	ctx.stroke();
+	ctx.restore();
 
 	ctx.restore(); // restore default state (this will undo the rotate transformation)
 }
